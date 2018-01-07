@@ -71,3 +71,7 @@ recursivelyRun = () => {
 }
 
 recursivelyRun();
+
+module.exports = {
+    recursivelyRun: recursivelyRun
+}

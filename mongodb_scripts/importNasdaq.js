@@ -44,19 +44,27 @@ let preProcess = (col_names) => {
     })
 }
 
-fs.readFile(path.join(__dirname, '../stock_symbols/nasdaq.csv'), 'utf8', (err, contents) => {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        var rows = utils.CSVToArray(contents, ",");
-        var col_names = rows[0];
-        preProcess(col_names);
-        rows.splice(0, 1)
+let importNasdaqStocks = () => {
+    fs.readFile(path.join(__dirname, '../stock_symbols/nasdaq.csv'), 'utf8', (err, contents) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            var rows = utils.CSVToArray(contents, ",");
+            var col_names = rows[0];
+            preProcess(col_names);
+            rows.splice(0, 1)
+    
+            saveStocks(0, rows)
+    
+        }
+    })
+}
+module.exports = {
+    importNasdaqStocks: importNasdaqStocks
+}
 
-        saveStocks(0, rows)
+importNasdaqStocks();
 
-    }
-})
 
 
