@@ -1,0 +1,1 @@
+var stockAPI = require("api/StockAPI");

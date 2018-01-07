@@ -1,0 +1,17 @@
+{
+  "name": "stocks",
+  "version": "1.0.0",
+  "description": "main stock app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.0.1",
+    "mongoose": "^5.0.0-rc0",
+    "regression": "^2.0.1",
+    "request": "^2.83.0"
+  }
+}
