@@ -4,6 +4,7 @@ var request = require("request");
 class AlphaVantageAPI {
 
     constructor() {
+        //This is free and public. Not really concerned about having this in the repo.
         this.alphaApiKey = "7X3KWIQ0WMP46IHZ"
         this.alphaUrl = "https://www.alphavantage.co/query"
 
