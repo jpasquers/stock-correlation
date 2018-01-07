@@ -14,7 +14,7 @@ let getRandomStock = () => {
             var random = Math.floor(Math.random() * count);
             
             Stock.findOne().skip(random).exec((err, stock) => {
-                if (err) reject();
+                if (err) reject(err);
                 else resolve(stock);
             })
         })
@@ -55,8 +55,9 @@ let runInstance = (finishFn) => {
             console.log(err);
         })
         
-    }).catch(() => {
-        console.log("failed to retrieve random stocks");
+    }).catch((err) => {
+        console.log("failed to retrieve random stocks:");
+        console.log(err);
     })
 }
 
@@ -73,5 +74,6 @@ if (require.main == module) {
 }
 
 module.exports = {
-    recursivelyRun: recursivelyRun
+    recursivelyRun: recursivelyRun,
+    runInstance: runInstance
 }

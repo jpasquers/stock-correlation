@@ -45,11 +45,13 @@ class AlphaVantageAPI {
             if (tsd.hasOwnProperty(date)) {
                 let fullInformation = tsd[date];
                 let closeValue = parseFloat(fullInformation["4. close"]);
+                let openValue = parseFloat(fullInformation["1. open"]);
                 let dateObj = new Date(date);
                 let milli = parseInt(dateObj.getTime());
                 retArr.push({
                     time: milli,
-                    closeValue: closeValue
+                    closeValue: closeValue,
+                    openValue: openValue
                 })
                 
             }
