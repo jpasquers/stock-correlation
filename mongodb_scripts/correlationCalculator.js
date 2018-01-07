@@ -45,15 +45,11 @@ let runInstance = (finishFn) => {
                     if (err) {
                         console.log("error saving new r2");
                     }
-                    setTimeout(() => {
-                        finishFn();
-                    }, 3000)
+                    finishFn();
                 })
             }
             else {
-                setTimeout(() => {
-                    finishFn();
-                }, 3000)
+                finishFn();
             }
         }).catch((err) => {
             console.log(err);
@@ -66,11 +62,15 @@ let runInstance = (finishFn) => {
 
 recursivelyRun = () => {
     runInstance(() => {
-        recursivelyRun();
+        setTimeout(() => {
+            recursivelyRun();
+        }, 2000);
     })
 }
 
-recursivelyRun();
+if (require.main == module) {
+    recursivelyRun();
+}
 
 module.exports = {
     recursivelyRun: recursivelyRun

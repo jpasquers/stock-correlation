@@ -1,5 +1,19 @@
-var NasdaqStocks = require("mongodb_scripts/importNasdaq");
-var CorrelationCalculator = require("mongodb_scripts/correlationCalculator");
+var NasdaqStocks = require("./mongodb_scripts/importNasdaqNyse");
+var CorrelationCalculator = require("./mongodb_scripts/correlationCalculator");
 
-NasdaqStocks.importNasdaqStocks();
-CorrelationCalculator.recursivelyRun();
+if (process.argv.length > 2 && process.argv[2] == "--generate") {
+    NasdaqStocks.importNasdaqStocks().then(() => {
+        NasdaqStocks.importNyseStocks().then(() => {
+            CorrelationCalculator.recursivelyRun();
+        }).catch((err) => {
+            console.log(err);
+        })
+    }).catch((err) => {
+        console.log(err);
+    })   
+}
+else {
+    CorrelationCalculator.recursivelyRun();
+}
+
+
