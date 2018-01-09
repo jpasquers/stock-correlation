@@ -62,10 +62,24 @@ var utilMethods = {
         return derivData;
     },
 
-    calcRSquared(earlierDerivatives, laterDerivatives, differential) {
-        let regressionInput = utilMethods.getRegressionInput(earlierDerivatives, laterDerivatives, differential);
-        let result = regression.linear(regressionInput);
-        return result.r2;
+    calcBestRSquared(earlierDerivatives, laterDerivatives) {
+        let translations = [1,3,5,9];
+        let bestTranslation = 1;
+        let bestRSquared = 0;
+        for (let i of translations) {
+            let regressionInput = utilMethods.getRegressionInput(earlierDerivatives, laterDerivatives, i);
+            let result = regression.linear(regressionInput);
+            if (result.r2 > bestRSquared) {
+                bestTranslation = i;
+                bestRSquared = result.r2;
+            }
+        }
+
+        
+        return {
+            translation: bestTranslation,
+            rSquared: bestRSquared
+        };
     },
 
     getRegressionInput(earlierDerivatives, laterDerivatives, differential) {

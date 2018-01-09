@@ -33,14 +33,15 @@ let runInstance = (finishFn) => {
             let normalized2 = GraphUtil.normalizeData(closeLists[1]);
             let derivs1 = GraphUtil.calcDerivatives(normalized1);
             let derivs2 = GraphUtil.calcDerivatives(normalized2);
-            let rSquared = GraphUtil.calcRSquared(derivs1, derivs2, consts.DIFFERENTIAL);
+            let result = GraphUtil.calcBestRSquared(derivs1, derivs2);
             let stockRegression = new StockRegression({
                 earlySymbol: stocks[0].symbol,
                 lateSymbol: stocks[1].symbol,
-                rSquared: rSquared
+                rSquared: result.rSquared,
+                translation: result.translation
             }) 
-            console.log(stocks[0].symbol + " " + stocks[1].symbol + " " + rSquared);
-            if (rSquared > 0.05) {
+            console.log(stocks[0].symbol + " " + stocks[1].symbol + " " + result.rSquared + " at translation " + result.translation);
+            if (result.rSquared > 0.05) {
                 stockRegression.save((err) => {
                     if (err) {
                         console.log("error saving new r2");
