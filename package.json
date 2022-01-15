@@ -1,7 +1,7 @@
 {
-  "name": "stocks",
+  "name": "jp-stock-correlator",
   "version": "1.0.0",
-  "description": "main stock app",
+  "description": "Simple time differential regression comparison",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/**.spec.js"
@@ -13,7 +13,10 @@
     "mongodb": "^3.0.1",
     "mongoose": "^5.0.0-rc0",
     "regression": "^2.0.1",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4",
+    "winston": "^3.4.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
