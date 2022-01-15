@@ -1,5 +1,22 @@
 # stock-correlation
 
+
+## NASDAQ Trader Symbol compilation:
+
+Symbol lists downloaded from: 
+
+```
+ftp://ftp.nasdaqtrader.com/SymbolDirectory/otherlisted.txt
+ftp://ftp.nasdaqtrader.com/SymbolDirectory/nasdaqlisted.txt
+```
+
+
+Each line is of the format:
+
+```
+ACT Symbol|Security Name|Exchange|CQS Symbol|ETF|Round Lot Size|Test Issue|NASDAQ Symbol
+```
+
 To run for the first time (this includes generation of the mongodb collections for the NYSE and NASDAQ Stock symbols):
 
 1) You will need the following environment variables set

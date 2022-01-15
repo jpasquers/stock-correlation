@@ -4,7 +4,6 @@ import {logger} from "./logger";
 
 const symbolsPath = path.join(__dirname,"../.symbols");
 
-const exchanges = ["nasdaq", "nyse"];
 
 const dirPresent = async (): Promise<boolean> => {
     try {
@@ -33,6 +32,12 @@ const exchangeFilesPresent = async (): Promise<boolean> => {
     return allSuccess;
 }
 
-export const generateIfMissing = () => {
+export const generateIfMissing = async () => {
+    if (await exchangeFilesPresent()) {
+        logger.info("All exchanges present and ready... Continuing to processor");
+        return;
+    }
+
+    logger.info("One or more exchanges not available. Re-downloading all");
 
 }
